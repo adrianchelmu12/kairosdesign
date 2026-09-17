@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { ArrowRight } from "lucide-react";
 
@@ -18,11 +17,9 @@ const TECH_ITEMS: TechItem[] = [
     description: "Arhitectură pe componente, randare hibridă la server și viteză de încărcare sub-secundă.",
     icon: (
       <svg className="w-6 h-6" viewBox="0 0 180 180" fill="currentColor">
-        <mask height="180" id="next-mask-grid" maskUnits="userSpaceOnUse" width="180" x="0" y="0" style={{ maskType: "alpha" }}>
         <mask height="180" id="next-mask-mob" maskUnits="userSpaceOnUse" width="180" x="0" y="0" style={{ maskType: "alpha" }}>
           <circle cx="90" cy="90" fill="black" r="90" />
         </mask>
-        <g mask="url(#next-mask-grid)">
         <g mask="url(#next-mask-mob)">
           <circle cx="90" cy="90" data-circle="true" fill="none" stroke="currentColor" strokeWidth="12" r="84" />
           <path d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.168 149.508 157.52Z" />
@@ -155,28 +152,10 @@ export default function TechStack() {
   };
 
   return (
-    <section
-      id="tehnologii"
-      className="relative pt-16 sm:pt-24 lg:pt-28 pb-10 sm:pb-14 lg:pb-16 bg-[#1f2421] text-[#f3f7f4] border-t border-[#49a078]/20 overflow-hidden"
-    >
     <section id="tehnologii" className="bg-[#1f2421] text-[#f3f7f4]">
       {/* Anchor for backward compatibility */}
       <span id="portofoliu" className="absolute -top-24 pointer-events-none" />
 
-      {/* Atmospheric Glow - zero-cost radial gradients */}
-      <div
-        className="absolute top-1/3 -left-48 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{
-          background: "radial-gradient(circle, rgba(33, 104, 105, 0.2) 0%, transparent 70%)",
-        }}
-      />
-      <div
-        className="absolute bottom-1/3 -right-48 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{
-          background: "radial-gradient(circle, rgba(73, 160, 120, 0.15) 0%, transparent 70%)",
-        }}
-      />
-      <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
       {/* ======================================================== */}
       {/* 1. VARIANTA MOBIL / TABLETĂ (< 1024px): Grid Natural     */}
       {/* ======================================================== */}
@@ -192,16 +171,6 @@ export default function TechStack() {
             </p>
           </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <div className="max-w-3xl mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#f3f7f4]">
-            Tehnologii alese{" "}
-            <span className="text-gradient-kairos">cu atenție.</span>
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-[#9cc5a1]/85 font-light leading-relaxed max-w-2xl">
-            Fiecare unealtă are un rol precis în livrarea unui produs digital rapid, stabil și durabil.
-          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {TECH_ITEMS.map((item) => (
               <div
@@ -228,9 +197,6 @@ export default function TechStack() {
         </div>
       </div>
 
-        {/* 6-Card Responsive Grid - 100% natural vertical scroll */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-          {TECH_ITEMS.map((item) => (
       {/* ======================================================== */}
       {/* 2. VARIANTA DESKTOP (>= 1024px): Scroll Orizontal Lipit  */}
       {/* ======================================================== */}
@@ -277,33 +243,15 @@ export default function TechStack() {
           {/* Center: Massive Single-Row Horizontal Track */}
           <div className="relative z-10 my-auto overflow-visible">
             <div
-              key={item.name}
-              className="relative rounded-2xl p-6 sm:p-7 bg-[#1f2421]/90 border border-[#49a078]/25 hover:border-[#49a078]/60 shadow-md transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"
               ref={trackRef}
               style={{
                 transform: `translate3d(${translateX}px, 0, 0)`,
               }}
               className="flex items-stretch gap-8 w-max will-change-transform ease-out duration-75"
             >
-              {/* Top Accent Line on hover */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#49a078]/0 to-transparent group-hover:via-[#49a078]/70 transition-all duration-500 rounded-t-2xl pointer-events-none" />
               {TECH_ITEMS.map((item, idx) => {
                 const isHovered = hoveredIdx === idx;
 
-              <div>
-                <div className="w-11 h-11 rounded-xl bg-[#216869]/20 border border-[#9cc5a1]/25 flex items-center justify-center text-[#49a078] mb-5 group-hover:scale-105 group-hover:border-[#49a078]/50 transition-all">
-                  {item.icon}
-                </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-[#f3f7f4] group-hover:text-white transition-colors">
-                  {item.name}
-                </h3>
-                <p className="mt-1 text-xs font-mono tracking-wider uppercase text-[#49a078] font-medium">
-                  {item.role}
-                </p>
-                <p className="mt-3 text-xs sm:text-sm text-[#9cc5a1]/80 leading-relaxed font-light">
-                  {item.description}
-                </p>
-              </div>
                 return (
                   <div
                     key={item.name}
@@ -345,7 +293,6 @@ export default function TechStack() {
                 );
               })}
             </div>
-          ))}
           </div>
 
           {/* Bottom Pinned Progress Line */}

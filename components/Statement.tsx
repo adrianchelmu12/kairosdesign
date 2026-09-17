@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import React, { useState, useEffect, useRef } from "react";
 
 interface TextSegment {
@@ -118,13 +117,6 @@ export default function Statement() {
 
       <div className="relative max-w-6xl mx-auto px-6 sm:px-8 w-full z-10 text-left sm:text-center">
         {/* Big Monumental Statement */}
-        <blockquote className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] xl:text-[4.75rem] font-bold tracking-tight leading-[1.18] pb-2">
-          <span className="text-[#f3f7f4]">Momentul oportun pentru </span>
-          <span className="text-gradient-kairos font-extrabold">saltul afacerii tale. </span>
-          <span className="text-[#f3f7f4]">De la identitate de brand la cod de ultimă generație, construim pentru </span>
-          <span className="text-gradient-kairos font-extrabold">performanță maximă.</span>
-          <span className="inline-block w-[3px] sm:w-[4px] md:w-[6px] h-[0.82em] ml-2.5 align-baseline bg-[#49a078] rounded-sm animate-pulse opacity-85 shadow-[0_0_12px_#49a078]" />
-        </blockquote>
         <div className="min-h-[160px] sm:min-h-[200px] md:min-h-[260px] flex items-center justify-center">
           <blockquote className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] xl:text-[4.75rem] font-bold tracking-tight leading-[1.18] pb-2">
             {renderContent()}
