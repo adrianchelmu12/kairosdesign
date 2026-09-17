@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 
 interface PillarItem {
   id: string;
@@ -32,12 +32,8 @@ const PILLARS: PillarItem[] = [
 // Interactive Pillar Row with dynamic spotlight and micro-animations
 function PillarRow({
   pillar,
-  index,
-  isVisible,
 }: {
   pillar: PillarItem;
-  index: number;
-  isVisible: boolean;
 }) {
   const rowRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -58,12 +54,7 @@ function PillarRow({
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      style={{
-        transitionDelay: `${250 + index * 160}ms`,
-      }}
-      className={`group relative py-12 sm:py-16 lg:py-20 px-6 sm:px-10 -mx-6 sm:-mx-10 rounded-3xl transition-all duration-700 cursor-pointer flex flex-col lg:flex-row lg:items-center justify-between gap-6 lg:gap-16 border-b border-[#49a078]/20 overflow-hidden transform ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
+      className="group relative py-10 sm:py-14 lg:py-16 px-4 sm:px-8 lg:px-10 -mx-4 sm:-mx-8 lg:-mx-10 rounded-2xl sm:rounded-3xl transition-all duration-300 cursor-pointer flex flex-col lg:flex-row lg:items-center justify-between gap-5 lg:gap-16 border-b border-[#49a078]/20 overflow-hidden"
     >
       {/* Dynamic Cursor Spotlight Effect */}
       <div
@@ -75,7 +66,7 @@ function PillarRow({
       />
 
       {/* Radiant Top Border Accent Line that lights up on hover */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#49a078]/0 to-transparent group-hover:via-[#49a078]/60 transition-all duration-700 pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#49a078]/0 to-transparent group-hover:via-[#49a078]/60 transition-all duration-500 pointer-events-none" />
 
       {/* Left Column: Title with expanding glowing bar */}
       <div className="relative z-10 lg:w-5/12 shrink-0 flex items-center">
@@ -89,7 +80,7 @@ function PillarRow({
 
       {/* Right Column: Text smoothly illuminating */}
       <div className="relative z-10 lg:w-7/12">
-        <p className="text-base sm:text-lg text-[#9cc5a1]/80 group-hover:text-[#f3f7f4] font-light leading-relaxed transition-colors duration-300">
+        <p className="text-base sm:text-lg text-[#9cc5a1]/85 group-hover:text-[#f3f7f4] font-light leading-relaxed transition-colors duration-300">
           {pillar.description}
         </p>
       </div>
@@ -98,41 +89,24 @@ function PillarRow({
 }
 
 export default function Philosophy() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  // Trigger reveal on scroll (with instant mobile fallback)
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.innerWidth < 768) {
-      setIsVisible(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.05 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section
       id="abordare"
-      ref={sectionRef}
-      className="relative pt-24 sm:pt-32 lg:pt-36 pb-28 sm:pb-36 lg:pb-44 bg-[#1f2421] overflow-hidden"
+      className="relative pt-20 sm:pt-28 lg:pt-36 pb-24 sm:pb-32 lg:pb-40 bg-[#1f2421] overflow-hidden"
     >
-      {/* Ambient Cinematic Lighting */}
-      <div className="absolute top-1/4 -left-48 w-[600px] h-[600px] bg-[#216869] opacity-20 blur-[190px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-48 w-[650px] h-[650px] bg-[#49a078] opacity-15 blur-[220px] rounded-full pointer-events-none" />
+      {/* Ambient Cinematic Lighting - zero-cost radial gradients */}
+      <div
+        className="absolute top-1/4 -left-48 w-[500px] h-[500px] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(33, 104, 105, 0.22) 0%, transparent 70%)",
+        }}
+      />
+      <div
+        className="absolute bottom-1/4 -right-48 w-[550px] h-[550px] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(73, 160, 120, 0.18) 0%, transparent 70%)",
+        }}
+      />
       <div className="absolute inset-0 bg-grid-pattern opacity-15 pointer-events-none" />
 
       {/* Decorative Hairline Glow Divider */}
@@ -140,11 +114,7 @@ export default function Philosophy() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Monumental Editorial Headline */}
-        <div
-          className={`max-w-7xl transition-all duration-1000 transform ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
+        <div className="max-w-7xl">
           <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.4rem] xl:text-[5.2rem] font-bold tracking-tight text-[#f3f7f4] leading-[1.16]">
             <span className="block sm:whitespace-nowrap pb-1">
               Nu construim doar site-uri.
@@ -159,14 +129,12 @@ export default function Philosophy() {
           </p>
         </div>
 
-        {/* Varianta 1: Structură Orizontală Editorială Animat */}
-        <div className="mt-20 sm:mt-28 border-t border-[#49a078]/25">
-          {PILLARS.map((pillar, idx) => (
+        {/* Structură Orizontală Editorială */}
+        <div className="mt-16 sm:mt-24 border-t border-[#49a078]/25">
+          {PILLARS.map((pillar) => (
             <PillarRow
               key={pillar.id}
               pillar={pillar}
-              index={idx}
-              isVisible={isVisible}
             />
           ))}
         </div>
@@ -175,4 +143,3 @@ export default function Philosophy() {
     </section>
   );
 }
-

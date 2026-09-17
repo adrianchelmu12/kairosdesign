@@ -72,7 +72,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ro" className="scroll-smooth">
+    <html lang="ro">
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         

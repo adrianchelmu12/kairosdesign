@@ -8,16 +8,7 @@ export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
-  const [isRevealed, setIsRevealed] = useState(false);
-
-  // Reveal immediately on mount for instantaneous mobile & desktop readiness
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsRevealed(true);
-    }, 60);
-
-    return () => clearTimeout(timer);
-  }, []);
+  const [isRevealed, setIsRevealed] = useState(true);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
@@ -38,21 +29,24 @@ export default function Hero() {
       {/* Background Ambience & Lighting */}
       <div className="absolute inset-0 bg-grid-pattern opacity-25 pointer-events-none" />
 
-      {/* Atmospheric Glows - ultra-performant on mobile */}
+      {/* Atmospheric Glows - ultra-performant zero-cost radial gradients */}
       <div
-        className={`absolute top-1/4 left-10 w-[280px] sm:w-[500px] h-[280px] sm:h-[500px] bg-[#216869] blur-2xl sm:blur-[130px] rounded-full pointer-events-none transition-all duration-700 ease-out ${
-          isRevealed ? "opacity-20 scale-100" : "opacity-0 scale-75"
-        }`}
+        className="absolute top-1/4 left-10 w-[280px] sm:w-[500px] h-[280px] sm:h-[500px] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(33, 104, 105, 0.28) 0%, transparent 70%)",
+        }}
       />
       <div
-        className={`absolute top-1/3 right-10 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-[#49a078] blur-2xl sm:blur-[140px] rounded-full pointer-events-none transition-all duration-700 delay-100 ease-out ${
-          isRevealed ? "opacity-15 scale-100" : "opacity-0 scale-75"
-        }`}
+        className="absolute top-1/3 right-10 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(73, 160, 120, 0.22) 0%, transparent 70%)",
+        }}
       />
       <div
-        className={`hidden sm:block absolute bottom-10 left-1/3 w-[450px] h-[450px] bg-[#216869] blur-[140px] rounded-full pointer-events-none transition-all duration-700 delay-200 ease-out ${
-          isRevealed ? "opacity-15 scale-100" : "opacity-0 scale-75"
-        }`}
+        className="hidden sm:block absolute bottom-10 left-1/3 w-[450px] h-[450px] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(33, 104, 105, 0.2) 0%, transparent 70%)",
+        }}
       />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">

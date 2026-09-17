@@ -125,9 +125,19 @@ export default function Footer() {
 
   return (
     <footer className="relative bg-[#1f2421] text-[#f3f7f4] border-t border-[#216869]/30 pt-16 sm:pt-20 pb-10 overflow-hidden select-none">
-      {/* Ambient background glows */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[350px] bg-[#216869] opacity-10 blur-[180px] pointer-events-none rounded-full" />
-      <div className="absolute bottom-10 right-1/4 w-[400px] h-[300px] bg-[#49a078] opacity-10 blur-[190px] pointer-events-none rounded-full" />
+      {/* Ambient background glows - zero-cost radial gradients */}
+      <div
+        className="absolute top-0 left-1/4 w-[500px] h-[350px] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(33, 104, 105, 0.2) 0%, transparent 70%)",
+        }}
+      />
+      <div
+        className="absolute bottom-10 right-1/4 w-[400px] h-[300px] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(73, 160, 120, 0.16) 0%, transparent 70%)",
+        }}
+      />
       <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">

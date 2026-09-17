@@ -53,9 +53,19 @@ export default function Contact() {
 
   return (
     <section id="contact" className="relative py-28 sm:py-36 bg-[#1f2421] text-[#f3f7f4] overflow-hidden">
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#216869] opacity-15 blur-[200px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[450px] h-[450px] bg-[#49a078] opacity-10 blur-[220px] rounded-full pointer-events-none" />
+      {/* Background ambient lighting - zero-cost radial gradients */}
+      <div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[550px] h-[550px] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(33, 104, 105, 0.22) 0%, transparent 70%)",
+        }}
+      />
+      <div
+        className="absolute bottom-10 right-10 w-[450px] h-[450px] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(73, 160, 120, 0.16) 0%, transparent 70%)",
+        }}
+      />
       <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">

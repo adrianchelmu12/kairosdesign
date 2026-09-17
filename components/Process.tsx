@@ -41,9 +41,19 @@ export default function Process() {
 
   return (
     <section id="proces" className="relative py-24 sm:py-32 bg-[#1f2421] overflow-hidden">
-      {/* Background radial highlights */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#216869] opacity-15 blur-[160px] rounded-full pointer-events-none" />
-      <div className="absolute -left-24 bottom-12 w-[420px] h-[420px] bg-[#49a078] opacity-10 blur-[150px] rounded-full pointer-events-none" />
+      {/* Background radial highlights - zero-cost radial gradients */}
+      <div
+        className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(33, 104, 105, 0.22) 0%, transparent 70%)",
+        }}
+      />
+      <div
+        className="absolute -left-24 bottom-12 w-[420px] h-[420px] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(73, 160, 120, 0.16) 0%, transparent 70%)",
+        }}
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         

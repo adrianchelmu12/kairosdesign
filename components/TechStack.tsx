@@ -205,9 +205,19 @@ export default function TechStack() {
         className="hidden lg:block relative h-[280vh]"
       >
         <div className="sticky top-0 h-[100dvh] w-full flex flex-col justify-between overflow-hidden px-16 lg:px-20 py-10">
-          {/* Atmospheric Glow */}
-          <div className="absolute top-1/4 -right-48 w-[500px] h-[500px] bg-[#216869] opacity-15 blur-[140px] rounded-full pointer-events-none" />
-          <div className="absolute bottom-1/4 -left-48 w-[500px] h-[500px] bg-[#49a078] opacity-10 blur-[150px] rounded-full pointer-events-none" />
+          {/* Atmospheric Glow - zero-cost radial gradients */}
+          <div
+            className="absolute top-1/4 -right-48 w-[500px] h-[500px] rounded-full pointer-events-none"
+            style={{
+              background: "radial-gradient(circle, rgba(33, 104, 105, 0.2) 0%, transparent 70%)",
+            }}
+          />
+          <div
+            className="absolute bottom-1/4 -left-48 w-[500px] h-[500px] rounded-full pointer-events-none"
+            style={{
+              background: "radial-gradient(circle, rgba(73, 160, 120, 0.15) 0%, transparent 70%)",
+            }}
+          />
           <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
 
           {/* Top Header Row */}
