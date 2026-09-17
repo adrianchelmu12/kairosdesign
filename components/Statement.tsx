@@ -67,7 +67,7 @@ export default function Statement() {
 
     const interval = setTimeout(() => {
       setCharCount((prev) => prev + 1);
-    }, 18);
+    }, 34);
 
     return () => clearTimeout(interval);
   }, [hasStarted, charCount, isMobile]);
@@ -115,10 +115,10 @@ export default function Statement() {
       />
       <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
 
-      <div className="relative max-w-6xl mx-auto px-6 sm:px-8 w-full z-10 text-left sm:text-center">
+      <div className="relative max-w-6xl mx-auto px-6 sm:px-8 w-full z-10 text-left">
         {/* Big Monumental Statement */}
-        <div className="min-h-[160px] sm:min-h-[200px] md:min-h-[260px] flex items-center justify-center">
-          <blockquote className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] xl:text-[4.75rem] font-bold tracking-tight leading-[1.18] pb-2">
+        <div className="min-h-[160px] sm:min-h-[200px] md:min-h-[260px] flex items-center justify-start text-left">
+          <blockquote className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] xl:text-[4.75rem] font-bold tracking-tight leading-[1.18] pb-2 text-left">
             {renderContent()}
 
             {/* Blinking Studio Cursor */}

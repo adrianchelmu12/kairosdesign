@@ -19,11 +19,11 @@ export default function Preloader() {
 
     const exitTimer = setTimeout(() => {
       setIsExiting(true);
-    }, 320);
+    }, 850);
 
     const removeTimer = setTimeout(() => {
       setVisible(false);
-    }, 580);
+    }, 1250);
 
     return () => {
       clearTimeout(exitTimer);
@@ -35,7 +35,7 @@ export default function Preloader() {
 
   return (
     <div
-      className={`fixed inset-0 z-[99999] flex items-center justify-center bg-[#1f2421] transition-opacity duration-300 ease-out select-none ${
+      className={`fixed inset-0 z-[99999] flex items-center justify-center bg-[#1f2421] transition-opacity duration-500 ease-out select-none ${
         isExiting ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
       aria-hidden={isExiting}
@@ -44,7 +44,7 @@ export default function Preloader() {
         
         {/* Glow discret - cost GPU 0 */}
         <div
-          className={`absolute w-48 sm:w-80 h-48 sm:h-80 rounded-full transition-all duration-300 ease-out ${
+          className={`absolute w-48 sm:w-80 h-48 sm:h-80 rounded-full transition-all duration-500 ease-out ${
             isExiting ? "scale-50 opacity-0" : "scale-100 opacity-100"
           }`}
           style={{
@@ -54,13 +54,13 @@ export default function Preloader() {
 
         {/* Centerpiece Spinning Kairos Favicon Sigla */}
         <div
-          className={`relative z-10 w-20 sm:w-24 h-20 sm:h-24 flex items-center justify-center transition-all duration-300 cubic-bezier(0.16, 1, 0.3, 1) ${
+          className={`relative z-10 w-20 sm:w-24 h-20 sm:h-24 flex items-center justify-center transition-all duration-400 cubic-bezier(0.16, 1, 0.3, 1) ${
             isExiting ? "scale-0 opacity-0" : "scale-100 opacity-100"
           }`}
         >
           <svg
             viewBox="0 0 64 64"
-            className="w-full h-full animate-[spin_2s_linear_infinite] drop-shadow-[0_0_25px_rgba(73,160,120,0.8)] origin-center"
+            className="w-full h-full animate-[spin_2.5s_linear_infinite] drop-shadow-[0_0_25px_rgba(73,160,120,0.8)] origin-center"
           >
             <g transform="matrix(0.140125,0,0,0.140125,-56.146273,-137.463049)">
               <g transform="matrix(1,0,0,1,-33.575588,54)">
