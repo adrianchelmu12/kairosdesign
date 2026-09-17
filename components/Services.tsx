@@ -118,10 +118,10 @@ export default function Services() {
       {/* ======================================================== */}
       {/* 1. VARIANTA MOBIL / TABLETĂ (< 1024px): Scroll Natural   */}
       {/* ======================================================== */}
-      <div className="lg:hidden py-20 px-6 sm:px-10 relative overflow-hidden border-t border-[#49a078]/20">
+      <div className="lg:hidden py-16 sm:py-20 px-4 sm:px-8 border-t border-[#49a078]/20">
         <div className="max-w-4xl mx-auto">
           {/* Header mobil */}
-          <div className="mb-14">
+          <div className="mb-10 sm:mb-14">
             <span className="text-xs font-mono uppercase tracking-widest text-[#49a078] font-semibold">
               Servicii Core
             </span>
@@ -131,11 +131,11 @@ export default function Services() {
           </div>
 
           {/* Listă verticală de servicii pe mobil */}
-          <div className="space-y-16">
+          <div className="space-y-12 sm:space-y-16">
             {SERVICES.map((service) => (
               <div
                 key={service.id}
-                className="relative rounded-2xl p-7 sm:p-9 bg-[#1f2421] border border-[#49a078]/25 shadow-lg"
+                className="relative rounded-2xl p-6 sm:p-8 bg-[#1f2421] border border-[#49a078]/25 shadow-lg"
               >
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-3xl font-black text-[#216869] font-mono">

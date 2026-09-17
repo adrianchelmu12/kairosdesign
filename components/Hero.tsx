@@ -58,7 +58,7 @@ export default function Hero() {
           <div className="lg:col-span-7 flex flex-col justify-center text-left">
           
             {/* Giant Monumental Headline with staggered line reveals */}
-            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[5.4rem] xl:text-[6.25rem] font-black tracking-tighter text-[#f3f7f4] leading-[0.92] select-none">
+            <h1 className="text-[2.75rem] sm:text-7xl md:text-8xl lg:text-[5.4rem] xl:text-[6.25rem] font-black tracking-tighter text-[#f3f7f4] leading-[0.92] select-none">
               <span className="block overflow-hidden py-1">
                 <span
                   className={`block transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
@@ -151,23 +151,28 @@ export default function Hero() {
               isRevealed ? "scale-100 opacity-100" : "scale-85 opacity-0"
             }`}
           >
-            <div className="relative w-[320px] sm:w-[420px] md:w-[460px] h-[320px] sm:h-[420px] md:h-[460px] flex items-center justify-center">
+            <div className="relative w-[280px] sm:w-[420px] md:w-[460px] h-[280px] sm:h-[420px] md:h-[460px] flex items-center justify-center">
               
               {/* Outer Pulsing Orbital Ring */}
               <div className="absolute inset-0 rounded-full border border-[#216869]/30 animate-[spin_40s_linear_infinite]" />
               
               {/* Concentric Dashed Ring */}
-              <div className="absolute inset-7 rounded-full border border-dashed border-[#49a078]/25 animate-[spin_30s_linear_infinite_reverse]" />
+              <div className="absolute inset-6 sm:inset-7 rounded-full border border-dashed border-[#49a078]/25 animate-[spin_30s_linear_infinite_reverse]" />
 
               {/* Inner Glowing Ring */}
-              <div className="absolute inset-14 rounded-full border border-[#9cc5a1]/20 shadow-[0_0_50px_rgba(33,104,105,0.3)] animate-pulse" />
+              <div className="absolute inset-12 sm:inset-14 rounded-full border border-[#9cc5a1]/20 shadow-[0_0_50px_rgba(33,104,105,0.3)] animate-pulse" />
 
-              {/* Ambient Glow Core */}
-              <div className="absolute w-64 h-64 bg-gradient-radial from-[#49a078]/25 via-[#216869]/30 to-transparent blur-3xl rounded-full" />
+              {/* Ambient Glow Core - zero cost radial gradient */}
+              <div
+                className="absolute w-52 sm:w-64 h-52 sm:h-64 rounded-full"
+                style={{
+                  background: "radial-gradient(circle, rgba(73, 160, 120, 0.28) 0%, rgba(33, 104, 105, 0.2) 50%, transparent 70%)",
+                }}
+              />
 
               {/* 3D Reactive Tilting Logo Container */}
               <div
-                className="relative z-20 w-48 sm:w-60 md:w-72 h-48 sm:h-60 md:h-72 transition-transform duration-200 ease-out cursor-pointer flex items-center justify-center"
+                className="relative z-20 w-40 sm:w-60 md:w-72 h-40 sm:h-60 md:h-72 transition-transform duration-200 ease-out cursor-pointer flex items-center justify-center"
                 style={{
                   transform: isHovered
                     ? `perspective(1000px) rotateY(${mousePos.x * 24}deg) rotateX(${-mousePos.y * 24}deg) scale3d(1.06, 1.06, 1.06)`
@@ -175,7 +180,12 @@ export default function Hero() {
                 }}
               >
                 {/* Breathing Shadow Beneath Sigla */}
-                <div className="absolute -inset-4 bg-[#49a078]/25 blur-3xl rounded-full -z-10 animate-pulse" />
+                <div
+                  className="absolute -inset-2 rounded-full -z-10 animate-pulse"
+                  style={{
+                    background: "radial-gradient(circle, rgba(73, 160, 120, 0.3) 0%, transparent 70%)",
+                  }}
+                />
 
                 {/* The Kairos Sigla (Favicon SVG Paths) with dynamic multi-layer effects */}
                 <svg

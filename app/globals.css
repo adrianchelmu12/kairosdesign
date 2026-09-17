@@ -11,10 +11,17 @@
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
   color-scheme: dark;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+button, a, input, textarea {
+  touch-action: manipulation;
 }
 
 @media (prefers-reduced-motion: no-preference) {

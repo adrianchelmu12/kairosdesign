@@ -159,7 +159,7 @@ export default function TechStack() {
       {/* ======================================================== */}
       {/* 1. VARIANTA MOBIL / TABLETĂ (< 1024px): Grid Natural     */}
       {/* ======================================================== */}
-      <div className="lg:hidden py-20 px-6 sm:px-10 border-t border-[#49a078]/20">
+      <div className="lg:hidden py-16 sm:py-20 px-4 sm:px-8 border-t border-[#49a078]/20">
         <div className="max-w-5xl mx-auto">
           <div className="mb-12">
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#f3f7f4]">

@@ -168,7 +168,7 @@ export default function Contact() {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="Alex Popa sau Nume Companie"
-                        className="w-full px-4 py-3.5 rounded-xl bg-[#1f2421] border border-[#49a078]/25 text-[#f3f7f4] placeholder-[#9cc5a1]/40 text-sm focus:outline-none focus:border-[#49a078] focus:ring-1 focus:ring-[#49a078] transition-all"
+                        className="w-full px-4 py-3.5 rounded-xl bg-[#1f2421] border border-[#49a078]/25 text-[#f3f7f4] placeholder-[#9cc5a1]/40 text-base sm:text-sm focus:outline-none focus:border-[#49a078] focus:ring-1 focus:ring-[#49a078] transition-all"
                       />
                     </div>
 
@@ -182,7 +182,7 @@ export default function Contact() {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="alex@companie.ro"
-                        className="w-full px-4 py-3.5 rounded-xl bg-[#1f2421] border border-[#49a078]/25 text-[#f3f7f4] placeholder-[#9cc5a1]/40 text-sm focus:outline-none focus:border-[#49a078] focus:ring-1 focus:ring-[#49a078] transition-all"
+                        className="w-full px-4 py-3.5 rounded-xl bg-[#1f2421] border border-[#49a078]/25 text-[#f3f7f4] placeholder-[#9cc5a1]/40 text-base sm:text-sm focus:outline-none focus:border-[#49a078] focus:ring-1 focus:ring-[#49a078] transition-all"
                       />
                     </div>
                   </div>
@@ -198,7 +198,7 @@ export default function Contact() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Descrie pe scurt proiectul, obiectivele sau întrebările tale..."
-                      className="w-full px-4 py-3.5 rounded-xl bg-[#1f2421] border border-[#49a078]/25 text-[#f3f7f4] placeholder-[#9cc5a1]/40 text-sm focus:outline-none focus:border-[#49a078] focus:ring-1 focus:ring-[#49a078] transition-all resize-none"
+                      className="w-full px-4 py-3.5 rounded-xl bg-[#1f2421] border border-[#49a078]/25 text-[#f3f7f4] placeholder-[#9cc5a1]/40 text-base sm:text-sm focus:outline-none focus:border-[#49a078] focus:ring-1 focus:ring-[#49a078] transition-all resize-none"
                     />
                   </div>
 

@@ -46,21 +46,6 @@ export default function Footer() {
     resetToCenter();
   };
 
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (!flashlightRef.current || !e.touches[0]) return;
-    const rect = flashlightRef.current.getBoundingClientRect();
-    setMousePos({
-      x: e.touches[0].clientX - rect.left,
-      y: e.touches[0].clientY - rect.top,
-    });
-    setIsHovered(true);
-  };
-
-  const handleTouchEnd = () => {
-    setIsHovered(false);
-    resetToCenter();
-  };
-
   useEffect(() => {
     resetToCenter();
     const handleResize = () => {
@@ -252,9 +237,7 @@ export default function Footer() {
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        className="relative w-full py-6 sm:py-8 lg:py-10 overflow-hidden select-none cursor-crosshair bg-[#1f2421]"
+        className="relative w-full py-6 sm:py-8 lg:py-10 overflow-hidden select-none sm:cursor-crosshair bg-[#1f2421]"
       >
         {/* Flashlight Ambient Glow Beam */}
         <div

@@ -7,14 +7,23 @@ export default function Preloader() {
   const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
-    // Scurtăm durata preloader-ului pentru o încărcare instantanee pe mobil & desktop
+    try {
+      if (sessionStorage.getItem("kairos_intro_seen")) {
+        setVisible(false);
+        return;
+      }
+      sessionStorage.setItem("kairos_intro_seen", "1");
+    } catch {
+      // ignore
+    }
+
     const exitTimer = setTimeout(() => {
       setIsExiting(true);
-    }, 550);
+    }, 320);
 
     const removeTimer = setTimeout(() => {
       setVisible(false);
-    }, 950);
+    }, 580);
 
     return () => {
       clearTimeout(exitTimer);
@@ -26,23 +35,26 @@ export default function Preloader() {
 
   return (
     <div
-      className={`fixed inset-0 z-[99999] flex items-center justify-center bg-[#1f2421] transition-opacity duration-400 ease-out select-none ${
+      className={`fixed inset-0 z-[99999] flex items-center justify-center bg-[#1f2421] transition-opacity duration-300 ease-out select-none ${
         isExiting ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
       aria-hidden={isExiting}
     >
       <div className="relative flex items-center justify-center pointer-events-none">
         
-        {/* Glow discret */}
+        {/* Glow discret - cost GPU 0 */}
         <div
-          className={`absolute w-48 sm:w-80 h-48 sm:h-80 bg-gradient-radial from-[#49a078]/40 via-[#216869]/30 to-transparent blur-2xl rounded-full transition-all duration-400 ease-out ${
-            isExiting ? "scale-50 opacity-0" : "scale-100 opacity-100 animate-pulse"
+          className={`absolute w-48 sm:w-80 h-48 sm:h-80 rounded-full transition-all duration-300 ease-out ${
+            isExiting ? "scale-50 opacity-0" : "scale-100 opacity-100"
           }`}
+          style={{
+            background: "radial-gradient(circle, rgba(73, 160, 120, 0.35) 0%, rgba(33, 104, 105, 0.2) 50%, transparent 70%)",
+          }}
         />
 
         {/* Centerpiece Spinning Kairos Favicon Sigla */}
         <div
-          className={`relative z-10 w-20 sm:w-24 h-20 sm:h-24 flex items-center justify-center transition-all duration-400 cubic-bezier(0.16, 1, 0.3, 1) ${
+          className={`relative z-10 w-20 sm:w-24 h-20 sm:h-24 flex items-center justify-center transition-all duration-300 cubic-bezier(0.16, 1, 0.3, 1) ${
             isExiting ? "scale-0 opacity-0" : "scale-100 opacity-100"
           }`}
         >

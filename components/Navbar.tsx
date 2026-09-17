@@ -74,11 +74,12 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Mobile menu trigger */}
+        {/* Mobile menu trigger - minimum 44px touch target */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 rounded-lg text-[#9cc5a1] hover:text-[#49a078] hover:bg-[#216869]/20 transition-colors"
-          aria-label="Toggle navigation menu"
+          className="md:hidden w-11 h-11 rounded-xl text-[#9cc5a1] hover:text-[#49a078] hover:bg-[#216869]/20 flex items-center justify-center transition-colors active:scale-95 cursor-pointer"
+          aria-label="Comută meniul de navigare"
+          aria-expanded={mobileMenuOpen}
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -86,26 +87,24 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden mt-2 mx-auto max-w-7xl rounded-2xl bg-[#1f2421]/95 backdrop-blur-2xl border border-[#9cc5a1]/20 p-6 shadow-2xl transition-all">
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-2 pb-3 border-b border-[#216869]/40 text-xs text-[#9cc5a1]">
-            </div>
-
+        <div className="md:hidden mt-2 mx-auto max-w-7xl rounded-2xl bg-[#1f2421]/95 backdrop-blur-2xl border border-[#9cc5a1]/20 p-5 shadow-2xl transition-all">
+          <div className="flex flex-col gap-1">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-base text-[#f3f7f4] hover:text-[#49a078] transition-colors py-2 font-medium"
+                className="text-base text-[#f3f7f4] hover:text-[#49a078] hover:bg-[#216869]/20 px-4 py-3 rounded-xl transition-all font-medium flex items-center justify-between"
               >
-                {link.name}
+                <span>{link.name}</span>
+                <ArrowUpRight className="w-4 h-4 text-[#49a078]/60" />
               </a>
             ))}
 
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="mt-3 flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-gradient-to-r from-[#216869] to-[#49a078] text-[#f3f7f4] font-semibold text-sm shadow-[0_0_20px_rgba(73,160,120,0.3)]"
+              className="mt-3 flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-gradient-to-r from-[#216869] to-[#49a078] text-[#f3f7f4] font-semibold text-sm shadow-[0_0_20px_rgba(73,160,120,0.3)] active:scale-[0.98] transition-all"
             >
               <span>Hai să vorbim</span>
               <ArrowUpRight className="w-4 h-4" />
