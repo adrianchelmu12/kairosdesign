@@ -54,7 +54,7 @@ function PillarRow({
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative py-5 sm:py-7 lg:py-8 px-4 sm:px-6 lg:px-8 -mx-4 sm:-mx-6 lg:-mx-8 rounded-xl sm:rounded-2xl transition-all duration-300 cursor-pointer flex flex-col lg:flex-row lg:items-center justify-between gap-3 lg:gap-12 border-b border-[#49a078]/20 overflow-hidden"
+      className="group relative py-5 sm:py-7 lg:py-8 px-3 sm:px-5 lg:px-6 mx-0 sm:-mx-2 lg:-mx-4 rounded-xl sm:rounded-2xl transition-all duration-300 cursor-pointer flex flex-col lg:flex-row lg:items-center justify-between gap-3 lg:gap-12 border-b border-[#49a078]/20 overflow-hidden w-full max-w-full"
     >
       {/* Dynamic Cursor Spotlight Effect */}
       <div

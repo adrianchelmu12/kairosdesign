@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#1f2421] text-[#f3f7f4] relative selection:bg-[#49a078] selection:text-[#1f2421]">
+    <main className="min-h-screen w-full max-w-full overflow-x-hidden overflow-x-clip bg-[#1f2421] text-[#f3f7f4] relative selection:bg-[#49a078] selection:text-[#1f2421]">
       <Preloader />
       <Navbar />
       <Hero />

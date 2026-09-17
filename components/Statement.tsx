@@ -5,7 +5,7 @@ import React from "react";
 export default function Statement() {
   return (
     <section
-      className="relative min-h-[55vh] sm:min-h-[70vh] flex items-center justify-center pt-20 sm:pt-24 md:pt-28 pb-28 sm:pb-36 md:pb-40 bg-[#1f2421] border-t border-[#216869]/30"
+      className="relative min-h-[55vh] sm:min-h-[70vh] flex items-center justify-center pt-20 sm:pt-24 md:pt-28 pb-28 sm:pb-36 md:pb-40 bg-[#1f2421] border-t border-[#216869]/30 overflow-hidden"
     >
       {/* Background Ambience & Lighting - zero-cost radial gradient */}
       <div

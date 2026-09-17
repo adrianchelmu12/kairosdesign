@@ -271,7 +271,7 @@ export default function Footer() {
 
         {/* Masked Monumental Typography — Center illuminated initially, moves on hover, S unclipped */}
         <div
-          className={`w-full flex justify-center items-center pointer-events-none relative z-10 px-8 sm:px-14 lg:px-20 ${
+          className={`w-full max-w-full overflow-hidden flex justify-center items-center pointer-events-none relative z-10 px-4 sm:px-14 lg:px-20 ${
             isHovered ? "transition-none" : "transition-all duration-700 ease-out"
           }`}
           style={{
@@ -279,7 +279,7 @@ export default function Footer() {
             maskImage: `radial-gradient(circle 280px at ${posX} ${posY}, black 35%, transparent 100%)`,
           }}
         >
-          <div className="text-[12vw] sm:text-[14vw] lg:text-[15vw] font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-[#f3f7f4] via-[#49a078] to-[#216869] leading-none select-none drop-shadow-[0_0_40px_rgba(73,160,120,0.65)] text-center whitespace-nowrap pr-4 sm:pr-8">
+          <div className="text-[12vw] sm:text-[14vw] lg:text-[15vw] font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-[#f3f7f4] via-[#49a078] to-[#216869] leading-none select-none drop-shadow-[0_0_40px_rgba(73,160,120,0.65)] text-center whitespace-nowrap">
             KAIROS
           </div>
         </div>

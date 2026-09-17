@@ -18,9 +18,15 @@ html {
   color-scheme: dark;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
+  touch-action: pan-y pinch-zoom;
 }
 
-button, a, input, textarea {
+button, a, input, textarea, select {
   touch-action: manipulation;
 }
 
@@ -36,7 +42,13 @@ body {
   background-color: #1f2421;
   color: #f3f7f4;
   font-family: "Helvetica Neue", "Heiti TC", sans-serif;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
   overflow-x: clip;
+  overscroll-behavior-x: none;
+  touch-action: pan-y pinch-zoom;
+  position: relative;
   selection-background-color: #49a078;
   selection-color: #1f2421;
 }
