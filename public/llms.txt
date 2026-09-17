@@ -1,0 +1,43 @@
+# Kairos — Agenție Digitală de Web Design, Branding & Dezvoltare Web
+
+> Kairos este o agenție digitală din România (Iași) specializată în crearea de produse digitale de înaltă performanță: Web Design avansat (UI/UX), Identitate de Brand strategică și Dezvoltare Web custom cu Next.js, React și TypeScript.
+
+- Website: https://kairosdesign.ro
+- Contact Email: office@kairosdesign.ro
+- Sediu / Origine: Iași, România
+- Arie de acoperire: România, Uniunea Europeană, Global (colaborare remote)
+- Canale Sociale:
+  - Instagram: https://instagram.com/kairosdesign.ro
+  - TikTok: https://www.tiktok.com/@kairosdesign.ro
+
+---
+
+## Servicii Principale
+
+### 1. Web Design & UI / UX Avansat
+- Cercetare de piață, wireframing și prototipare interactivă în Figma.
+- Arhitectură informațională orientată către conversie și lizibilitate.
+- Design sisteme scalabile, tipografie precisă și interfețe responsive mobile-first.
+
+### 2. Branding Strategic & Identitate Vizuală
+- Concepție logo vectorial, palete cromatice distinctive și manuale de brand.
+- Ton al vocii, ghiduri de utilizare vizuală și materiale digitale pregătite pentru scalare.
+
+### 3. Dezvoltare Web Custom cu Next.js & React
+- Arhitectură modernă fără șabloane prefabricate sau teme WordPress lente.
+- Stack tehnologic: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS.
+- Scoruri maxime de performanță (Core Web Vitals 95-100), securitate avansată și timpi de încărcare sub o secundă.
+
+---
+
+## Filosofie & Diferențiatori
+- **Zero Șabloane**: Nu reciclăm layout-uri vechi și nu folosim teme comerciale gata făcute. Fiecare proiect este dezvoltat de la zero.
+- **Performanță Nativă**: Optimizare fără compromisuri pentru telefoane mobile și dispozitive tactile.
+- **Parteneriat Transparent**: Proces structurat în 4 etape (Descoperire, Design, Dezvoltare, Lansare) cu comunicare continuă.
+
+---
+
+## Întrebări Frecvente (FAQ)
+- **Care este intervalul de livrare al unui proiect?** Un landing page este livrat de obicei în 2-3 săptămâni, iar un site complet în 4-8 săptămâni.
+- **Cum se inițiază o colaborare?** Trimițând un mesaj la office@kairosdesign.ro sau completând formularul de pe https://kairosdesign.ro/#contact. Răspunsul este oferit în maximum 24 de ore lucrătoare.
+

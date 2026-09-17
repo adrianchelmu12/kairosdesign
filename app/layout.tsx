@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
 import Analytics from "@/components/Analytics";
+import JsonLd from "@/components/JsonLd";
 
 export const viewport: Viewport = {
   themeColor: "#1f2421",
@@ -32,7 +33,22 @@ export const metadata: Metadata = {
     "Design Modern",
     "Agentie Web Iasi",
     "Dezvoltare Web Romania",
+    "Creare Site Iasi",
+    "Web Design Iasi",
+    "UI UX Romania",
+    "Dezvoltare Aplicatii Web",
+    "Agentie Branding Iasi",
+    "Figma UI UX",
+    "Next.js Romania",
   ],
+  category: "technology",
+  classification: "Web Design, Branding & Web Development Agency",
+  other: {
+    "geo.region": "RO-IS",
+    "geo.placename": "Iași",
+    "geo.position": "47.1585;27.6014",
+    "ICBM": "47.1585, 27.6014",
+  },
   authors: [{ name: "Kairos Design", url: "https://kairosdesign.ro" }],
   creator: "Kairos Design",
   alternates: {
@@ -75,6 +91,7 @@ export default function RootLayout({
     <html lang="ro">
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <JsonLd />
         
         {/* Google Tag (gtag.js) - Vizibil direct în HTML pentru scanerele Google Analytics */}
         <script
