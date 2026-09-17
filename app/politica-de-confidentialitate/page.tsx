@@ -83,7 +83,7 @@ export default function PoliticaConfidentialitate() {
 
           <div className="mt-6 flex flex-wrap items-center gap-4 text-xs font-mono text-[#9cc5a1]/75">
             <span className="px-3 py-1 rounded-md bg-[#262c28] border border-[#216869]/40">
-              Ultima actualizare: <strong>19.01.2026</strong>
+              Ultima actualizare: <strong>17.09.2026</strong>
             </span>
             <span>&bull;</span>
             <span>Operator: <strong>SC URBANSELL SRL (Kairos Design)</strong></span>
