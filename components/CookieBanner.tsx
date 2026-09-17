@@ -328,9 +328,6 @@ export default function CookieBanner() {
               <h3 className="text-sm font-bold text-[#f3f7f4] tracking-tight">
                 Respectăm confidențialitatea datelor tale
               </h3>
-              <p className="text-[11px] font-mono text-[#9cc5a1]/70">
-                Regulamentul (UE) 2016/679 &bull; GDPR
-              </p>
             </div>
           </div>
 
