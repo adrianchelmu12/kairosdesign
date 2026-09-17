@@ -59,9 +59,6 @@ export default function Process() {
         
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#216869]/20 border border-[#49a078]/30 text-[#49a078] text-xs font-semibold uppercase tracking-wider mb-4">
-            Metodologie
-          </div>
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#f3f7f4]">
             Un parcurs clar,{" "}
             <span className="text-gradient-kairos">de la idee la rezultat.</span>
@@ -81,13 +78,10 @@ export default function Process() {
                 className="relative rounded-2xl glass-panel p-6 sm:p-7 border border-[#9cc5a1]/15 hover:border-[#49a078]/50 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"
               >
                 <div>
-                  {/* Top Step Number & Phase Badge */}
-                  <div className="flex items-center justify-between mb-6">
+                  {/* Top Step Number */}
+                  <div className="mb-5">
                     <span className="text-3xl font-black text-[#216869] group-hover:text-[#49a078] transition-colors font-mono tracking-tight">
                       {step.number}
-                    </span>
-                    <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-[#216869]/20 border border-[#216869]/40 text-[#9cc5a1]">
-                      {step.phase}
                     </span>
                   </div>
 

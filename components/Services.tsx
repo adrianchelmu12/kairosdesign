@@ -81,9 +81,6 @@ export default function Services() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#216869]/20 border border-[#49a078]/30 text-[#49a078] text-xs font-semibold uppercase tracking-wider mb-4">
-            Servicii Core
-          </div>
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#f3f7f4]">
             Expertiză digitală{" "}
             <span className="text-gradient-kairos">completă.</span>
@@ -104,12 +101,9 @@ export default function Services() {
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#49a078]/0 to-transparent group-hover:via-[#49a078]/70 transition-all duration-500 rounded-t-2xl pointer-events-none" />
 
               <div>
-                <div className="flex items-center justify-between mb-5">
+                <div className="mb-4">
                   <span className="text-3xl font-black text-[#216869] group-hover:text-[#49a078] transition-colors font-mono">
                     {service.number}
-                  </span>
-                  <span className="text-xs font-mono px-3 py-1 rounded-full bg-[#216869]/20 border border-[#216869]/40 text-[#9cc5a1]">
-                    {service.tagline}
                   </span>
                 </div>
 

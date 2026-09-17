@@ -106,9 +106,6 @@ export default function TechStack() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="max-w-3xl mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#216869]/20 border border-[#49a078]/30 text-[#49a078] text-xs font-semibold uppercase tracking-wider mb-4">
-            Tehnologii
-          </div>
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#f3f7f4]">
             Tehnologii alese{" "}
             <span className="text-gradient-kairos">cu atenție.</span>
