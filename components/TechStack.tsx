@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { ArrowRight } from "lucide-react";
 
 interface TechItem {
   name: string;
@@ -17,9 +19,11 @@ const TECH_ITEMS: TechItem[] = [
     icon: (
       <svg className="w-6 h-6" viewBox="0 0 180 180" fill="currentColor">
         <mask height="180" id="next-mask-grid" maskUnits="userSpaceOnUse" width="180" x="0" y="0" style={{ maskType: "alpha" }}>
+        <mask height="180" id="next-mask-mob" maskUnits="userSpaceOnUse" width="180" x="0" y="0" style={{ maskType: "alpha" }}>
           <circle cx="90" cy="90" fill="black" r="90" />
         </mask>
         <g mask="url(#next-mask-grid)">
+        <g mask="url(#next-mask-mob)">
           <circle cx="90" cy="90" data-circle="true" fill="none" stroke="currentColor" strokeWidth="12" r="84" />
           <path d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.168 149.508 157.52Z" />
           <rect fill="currentColor" height="72" width="12" x="115" y="54" />
@@ -80,11 +84,82 @@ const TECH_ITEMS: TechItem[] = [
 ];
 
 export default function TechStack() {
+  const containerRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [translateX, setTranslateX] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkIsDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    checkIsDesktop();
+    window.addEventListener("resize", checkIsDesktop);
+    return () => window.removeEventListener("resize", checkIsDesktop);
+  }, []);
+
+  const handleScroll = useCallback(() => {
+    if (!containerRef.current || !trackRef.current || !isDesktop) return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    const totalScroll = containerRef.current.offsetHeight - window.innerHeight;
+    if (totalScroll <= 0) return;
+
+    const bufferDistance = Math.min(window.innerHeight * 0.5, 500);
+    const activeScrollDistance = Math.max(totalScroll - bufferDistance, 1);
+
+    const currentScroll = -rect.top;
+    const progress = Math.min(Math.max(currentScroll / activeScrollDistance, 0), 1);
+    setScrollProgress(progress);
+
+    const index = Math.min(
+      Math.floor(progress * TECH_ITEMS.length),
+      TECH_ITEMS.length - 1
+    );
+    setActiveIndex(index);
+
+    const trackWidth = trackRef.current.scrollWidth;
+    const parentWidth =
+      trackRef.current.parentElement?.clientWidth || window.innerWidth;
+    const maxScroll = Math.max(0, trackWidth - parentWidth + 60);
+
+    setTranslateX(progress * -maxScroll);
+  }, [isDesktop]);
+
+  useEffect(() => {
+    if (!isDesktop) return;
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll, isDesktop]);
+
+  const handleMouseMove = (idx: number, e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+    setHoveredIdx(idx);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredIdx(null);
+  };
+
   return (
     <section
       id="tehnologii"
       className="relative pt-16 sm:pt-24 lg:pt-28 pb-10 sm:pb-14 lg:pb-16 bg-[#1f2421] text-[#f3f7f4] border-t border-[#49a078]/20 overflow-hidden"
     >
+    <section id="tehnologii" className="bg-[#1f2421] text-[#f3f7f4]">
       {/* Anchor for backward compatibility */}
       <span id="portofoliu" className="absolute -top-24 pointer-events-none" />
 
@@ -102,6 +177,20 @@ export default function TechStack() {
         }}
       />
       <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
+      {/* ======================================================== */}
+      {/* 1. VARIANTA MOBIL / TABLETĂ (< 1024px): Grid Natural     */}
+      {/* ======================================================== */}
+      <div className="lg:hidden pt-12 sm:pt-16 pb-10 sm:pb-14 px-4 sm:px-6 border-t border-[#49a078]/20 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-3xl mb-10 sm:mb-12">
+            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#f3f7f4]">
+              Tehnologii alese{" "}
+              <span className="text-gradient-kairos">cu atenție.</span>
+            </h2>
+            <p className="mt-3 text-sm sm:text-base text-[#9cc5a1]/85 font-light leading-relaxed">
+              Fiecare unealtă are un rol precis în livrarea unui produs digital rapid, stabil și durabil.
+            </p>
+          </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
@@ -113,17 +202,93 @@ export default function TechStack() {
           <p className="mt-4 text-base sm:text-lg text-[#9cc5a1]/85 font-light leading-relaxed max-w-2xl">
             Fiecare unealtă are un rol precis în livrarea unui produs digital rapid, stabil și durabil.
           </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {TECH_ITEMS.map((item) => (
+              <div
+                key={item.name}
+                className="relative rounded-2xl p-6 sm:p-7 bg-[#1f2421]/90 border border-[#49a078]/25 shadow-md flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-[#216869]/20 border border-[#9cc5a1]/25 flex items-center justify-center text-[#49a078] mb-5">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#f3f7f4]">
+                    {item.name}
+                  </h3>
+                  <p className="mt-1 text-xs font-mono tracking-wider uppercase text-[#49a078] font-medium">
+                    {item.role}
+                  </p>
+                  <p className="mt-3 text-xs sm:text-sm text-[#9cc5a1]/80 leading-relaxed font-light">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
+      </div>
 
         {/* 6-Card Responsive Grid - 100% natural vertical scroll */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {TECH_ITEMS.map((item) => (
+      {/* ======================================================== */}
+      {/* 2. VARIANTA DESKTOP (>= 1024px): Scroll Orizontal Lipit  */}
+      {/* ======================================================== */}
+      <div
+        ref={containerRef as unknown as React.RefObject<HTMLDivElement>}
+        className="hidden lg:block relative h-[280vh]"
+      >
+        <div className="sticky top-0 h-[100dvh] w-full flex flex-col justify-between overflow-hidden px-16 lg:px-20 py-10">
+          {/* Atmospheric Glow - zero-cost radial gradients */}
+          <div
+            className="absolute top-1/4 -right-48 w-[500px] h-[500px] rounded-full pointer-events-none"
+            style={{
+              background: "radial-gradient(circle, rgba(33, 104, 105, 0.2) 0%, transparent 70%)",
+            }}
+          />
+          <div
+            className="absolute bottom-1/4 -left-48 w-[500px] h-[500px] rounded-full pointer-events-none"
+            style={{
+              background: "radial-gradient(circle, rgba(73, 160, 120, 0.15) 0%, transparent 70%)",
+            }}
+          />
+          <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
+
+          {/* Top Header Row */}
+          <div className="relative z-20 flex flex-col sm:flex-row sm:items-end justify-between pb-6 border-b border-[#49a078]/20 gap-4">
+            <div>
+              <h2 className="text-5xl lg:text-6xl font-bold tracking-tight text-[#f3f7f4] leading-[1.16] pb-1">
+                Tehnologii alese{" "}
+                <span className="text-gradient-kairos pb-2 inline-block">
+                  cu atenție.
+                </span>
+              </h2>
+              <p className="mt-2 text-base text-[#9cc5a1]/80 font-light max-w-xl">
+                Fiecare unealtă are un rol precis în livrarea unui produs digital rapid, stabil și durabil.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2 text-xs font-mono text-[#9cc5a1]/70 tracking-wider uppercase shrink-0">
+              <span>Scroll orizontal</span>
+              <ArrowRight className="w-4 h-4 text-[#49a078] animate-pulse" />
+            </div>
+          </div>
+
+          {/* Center: Massive Single-Row Horizontal Track */}
+          <div className="relative z-10 my-auto overflow-visible">
             <div
               key={item.name}
               className="relative rounded-2xl p-6 sm:p-7 bg-[#1f2421]/90 border border-[#49a078]/25 hover:border-[#49a078]/60 shadow-md transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"
+              ref={trackRef}
+              style={{
+                transform: `translate3d(${translateX}px, 0, 0)`,
+              }}
+              className="flex items-stretch gap-8 w-max will-change-transform ease-out duration-75"
             >
               {/* Top Accent Line on hover */}
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#49a078]/0 to-transparent group-hover:via-[#49a078]/70 transition-all duration-500 rounded-t-2xl pointer-events-none" />
+              {TECH_ITEMS.map((item, idx) => {
+                const isHovered = hoveredIdx === idx;
 
               <div>
                 <div className="w-11 h-11 rounded-xl bg-[#216869]/20 border border-[#9cc5a1]/25 flex items-center justify-center text-[#49a078] mb-5 group-hover:scale-105 group-hover:border-[#49a078]/50 transition-all">
@@ -139,8 +304,88 @@ export default function TechStack() {
                   {item.description}
                 </p>
               </div>
+                return (
+                  <div
+                    key={item.name}
+                    onMouseMove={(e) => handleMouseMove(idx, e)}
+                    onMouseLeave={handleMouseLeave}
+                    className="group relative rounded-2xl p-9 bg-[#1f2421] border border-[#49a078]/25 hover:border-[#49a078]/60 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_45px_-15px_rgba(33,104,105,0.4)] overflow-hidden flex flex-col justify-between w-[410px] shrink-0 min-h-[280px]"
+                  >
+                    {isHovered && (
+                      <div
+                        className="absolute pointer-events-none -inset-px transition-opacity duration-300"
+                        style={{
+                          background: `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, rgba(73, 160, 120, 0.16), transparent 70%)`,
+                        }}
+                      />
+                    )}
+
+                    <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#49a078] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                    <div className="relative z-10 mb-6">
+                      <div className="w-12 h-12 rounded-xl bg-[#216869]/15 border border-[#9cc5a1]/20 flex items-center justify-center text-[#9cc5a1] group-hover:text-white group-hover:border-[#49a078] group-hover:bg-[#49a078]/20 group-hover:shadow-[0_0_25px_rgba(73,160,120,0.35)] group-hover:scale-105 transition-all duration-300">
+                        {item.icon}
+                      </div>
+                    </div>
+
+                    <div className="relative z-10">
+                      <h3 className="text-3xl font-bold tracking-tight text-[#f3f7f4] group-hover:text-white transition-colors">
+                        {item.name}
+                      </h3>
+
+                      <p className="mt-1.5 text-sm font-mono tracking-wider uppercase text-[#49a078] font-medium">
+                        {item.role}
+                      </p>
+
+                      <p className="mt-3 text-sm text-[#9cc5a1]/75 leading-relaxed font-light group-hover:text-[#9cc5a1]/95 transition-colors">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           ))}
+          </div>
+
+          {/* Bottom Pinned Progress Line */}
+          <div className="relative z-20 pt-6 border-t border-[#49a078]/20 flex items-center justify-between gap-6">
+            <div
+              onClick={(e) => {
+                if (!containerRef.current) return;
+                const rect = e.currentTarget.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                const clickProgress = Math.min(
+                  Math.max(clickX / rect.width, 0),
+                  1
+                );
+                const totalScroll =
+                  containerRef.current.offsetHeight - window.innerHeight;
+                const bufferDistance = Math.min(window.innerHeight * 0.5, 500);
+                const activeScrollDistance = Math.max(
+                  totalScroll - bufferDistance,
+                  1
+                );
+                const containerTop =
+                  window.scrollY +
+                  containerRef.current.getBoundingClientRect().top;
+                window.scrollTo({
+                  top: containerTop + clickProgress * activeScrollDistance,
+                  behavior: "smooth",
+                });
+              }}
+              className="w-full bg-[#216869]/30 h-1.5 rounded-full overflow-hidden cursor-pointer"
+            >
+              <div
+                className="bg-gradient-to-r from-[#216869] via-[#49a078] to-[#9cc5a1] h-full rounded-full transition-all duration-100"
+                style={{ width: `${Math.max(scrollProgress * 100, 4)}%` }}
+              />
+            </div>
+
+            <span className="text-xs font-mono text-[#9cc5a1]/70 shrink-0">
+              0{activeIndex + 1} / 0{TECH_ITEMS.length}
+            </span>
+          </div>
         </div>
       </div>
     </section>

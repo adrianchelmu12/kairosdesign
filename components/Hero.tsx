@@ -10,6 +10,14 @@ export default function Hero() {
   const [isHovered, setIsHovered] = useState(false);
   const [isRevealed, setIsRevealed] = useState(true);
 
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.innerWidth >= 1024) {
+      setIsRevealed(false);
+      const timer = setTimeout(() => setIsRevealed(true), 120);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
