@@ -75,6 +75,31 @@ export default function RootLayout({
     <html lang="ro" className="scroll-smooth">
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        
+        {/* Google Tag (gtag.js) - Vizibil direct în HTML pentru scanerele Google Analytics */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-GVJLHFF397"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              // Google Consent Mode v2: Implicit blocat (denied) până când utilizatorul acceptă din banner
+              gtag('consent', 'default', {
+                'analytics_storage': 'denied',
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied'
+              });
+              gtag('js', new Date());
+              gtag('config', 'G-GVJLHFF397', {
+                anonymize_ip: true
+              });
+            `,
+          }}
+        />
       </head>
       <body className="bg-[#1f2421] text-[#f3f7f4] antialiased selection:bg-[#49a078] selection:text-[#1f2421]">
         {children}

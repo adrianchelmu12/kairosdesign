@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Script from "next/script";
+import { useEffect } from "react";
 
 const STORAGE_KEY = "kairos_cookie_consent_v1";
 
@@ -18,8 +17,15 @@ export function trackEvent(
     const parsed = JSON.parse(saved);
     if (!parsed?.preferences?.analytics) return; // Respectă strict consimțământul GDPR
 
-    if (typeof (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag === "function") {
-      (window as unknown as { gtag: (...args: unknown[]) => void }).gtag("event", action, params);
+    if (
+      typeof (window as unknown as { gtag?: (...args: unknown[]) => void })
+        .gtag === "function"
+    ) {
+      (window as unknown as { gtag: (...args: unknown[]) => void }).gtag(
+        "event",
+        action,
+        params
+      );
     }
   } catch {
     // Fail gracefully
@@ -27,17 +33,29 @@ export function trackEvent(
 }
 
 export default function Analytics() {
-  const [analyticsAllowed, setAnalyticsAllowed] = useState(false);
-  const gaId = process.env.NEXT_PUBLIC_GA_ID || "G-GVJLHFF397";
-
   useEffect(() => {
-    // 1. Verificare inițială a consimțământului salvat
+    const updateGtagConsent = (granted: boolean) => {
+      if (
+        typeof (window as unknown as { gtag?: (...args: unknown[]) => void })
+          .gtag === "function"
+      ) {
+        (window as unknown as { gtag: (...args: unknown[]) => void }).gtag(
+          "consent",
+          "update",
+          {
+            analytics_storage: granted ? "granted" : "denied",
+          }
+        );
+      }
+    };
+
+    // 1. Verificare inițială a consimțământului salvat în browser
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
         if (parsed?.preferences?.analytics) {
-          setAnalyticsAllowed(true);
+          updateGtagConsent(true);
         }
       }
     } catch {
@@ -48,43 +66,17 @@ export default function Analytics() {
     const handleConsentUpdate = (event: Event) => {
       const customEvent = event as CustomEvent<{ analytics?: boolean }>;
       const isAllowed = Boolean(customEvent.detail?.analytics);
-      setAnalyticsAllowed(isAllowed);
-
-      // Dacă utilizatorul a revocat consimțământul, dezactivăm Google Analytics
-      if (!isAllowed && gaId && typeof window !== "undefined") {
-        (window as unknown as Record<string, boolean>)[`ga-disable-${gaId}`] = true;
-      }
+      updateGtagConsent(isAllowed);
     };
 
     window.addEventListener("kairosCookieConsentUpdated", handleConsentUpdate);
     return () => {
-      window.removeEventListener("kairosCookieConsentUpdated", handleConsentUpdate);
+      window.removeEventListener(
+        "kairosCookieConsentUpdated",
+        handleConsentUpdate
+      );
     };
-  }, [gaId]);
+  }, []);
 
-  // Dacă nu este setat niciun ID de GA sau utilizatorul nu a dat acordul pentru cookies analitice, nu încărcăm nimic
-  if (!gaId || !analyticsAllowed) {
-    return null;
-  }
-
-  return (
-    <>
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics-init" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${gaId}', {
-            page_path: window.location.pathname,
-            anonymize_ip: true
-          });
-        `}
-      </Script>
-    </>
-  );
+  return null;
 }
-
