@@ -28,7 +28,7 @@ export function trackEvent(
 
 export default function Analytics() {
   const [analyticsAllowed, setAnalyticsAllowed] = useState(false);
-  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  const gaId = process.env.NEXT_PUBLIC_GA_ID || "G-GVJLHFF397";
 
   useEffect(() => {
     // 1. Verificare inițială a consimțământului salvat
