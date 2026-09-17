@@ -101,15 +101,20 @@ export default function Philosophy() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  // Trigger reveal on scroll
+  // Trigger reveal on scroll (with instant mobile fallback)
   useEffect(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.05 }
     );
 
     if (sectionRef.current) {

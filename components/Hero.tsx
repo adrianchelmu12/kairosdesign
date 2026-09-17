@@ -10,11 +10,11 @@ export default function Hero() {
   const [isHovered, setIsHovered] = useState(false);
   const [isRevealed, setIsRevealed] = useState(false);
 
-  // Trigger opening entrance animation synchronized with preloader exit
+  // Reveal immediately on mount for instantaneous mobile & desktop readiness
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsRevealed(true);
-    }, 1350);
+    }, 60);
 
     return () => clearTimeout(timer);
   }, []);
@@ -34,23 +34,23 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-[92vh] flex items-center pt-24 sm:pt-28 pb-16 overflow-hidden bg-[#1f2421]">
+    <section className="relative min-h-[90vh] flex items-center pt-24 sm:pt-28 pb-16 overflow-hidden bg-[#1f2421]">
       {/* Background Ambience & Lighting */}
       <div className="absolute inset-0 bg-grid-pattern opacity-25 pointer-events-none" />
 
-      {/* Deep Atmospheric Glows with opening bloom effect */}
+      {/* Atmospheric Glows - ultra-performant on mobile */}
       <div
-        className={`absolute top-1/4 left-10 w-[500px] h-[500px] bg-[#216869] blur-[150px] rounded-full pointer-events-none transition-all duration-1000 ease-out ${
+        className={`absolute top-1/4 left-10 w-[280px] sm:w-[500px] h-[280px] sm:h-[500px] bg-[#216869] blur-2xl sm:blur-[130px] rounded-full pointer-events-none transition-all duration-700 ease-out ${
           isRevealed ? "opacity-20 scale-100" : "opacity-0 scale-75"
         }`}
       />
       <div
-        className={`absolute top-1/3 right-10 w-[600px] h-[600px] bg-[#49a078] blur-[160px] rounded-full pointer-events-none transition-all duration-1000 delay-150 ease-out ${
+        className={`absolute top-1/3 right-10 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-[#49a078] blur-2xl sm:blur-[140px] rounded-full pointer-events-none transition-all duration-700 delay-100 ease-out ${
           isRevealed ? "opacity-15 scale-100" : "opacity-0 scale-75"
         }`}
       />
       <div
-        className={`absolute bottom-10 left-1/3 w-[450px] h-[450px] bg-[#216869] blur-[140px] rounded-full pointer-events-none transition-all duration-1000 delay-300 ease-out ${
+        className={`hidden sm:block absolute bottom-10 left-1/3 w-[450px] h-[450px] bg-[#216869] blur-[140px] rounded-full pointer-events-none transition-all duration-700 delay-200 ease-out ${
           isRevealed ? "opacity-15 scale-100" : "opacity-0 scale-75"
         }`}
       />

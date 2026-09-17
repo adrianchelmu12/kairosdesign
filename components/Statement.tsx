@@ -33,15 +33,21 @@ export default function Statement() {
   const [hasStarted, setHasStarted] = useState(false);
   const [charCount, setCharCount] = useState(0);
 
-  // Trigger typing when section enters viewport
+  // Trigger typing when section enters viewport (low threshold for immediate mobile response)
   useEffect(() => {
+    // Pe ecrane mici pornim direct după un scurt delay pentru a nu lăsa zona goală
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      setHasStarted(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasStarted) {
           setHasStarted(true);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.05 }
     );
 
     if (sectionRef.current) {
