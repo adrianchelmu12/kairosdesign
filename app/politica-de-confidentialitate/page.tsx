@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   ArrowLeft,
-  Shield,
   Lock,
   Cookie,
   Mail,
@@ -75,11 +74,6 @@ export default function PoliticaConfidentialitate() {
       {/* Policy Hero Header */}
       <section className="pt-16 pb-12 sm:pt-20 sm:pb-16 relative z-10">
         <div className="max-w-4xl mx-auto px-6 sm:px-8">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#216869]/20 border border-[#49a078]/30 text-xs font-mono uppercase tracking-wider text-[#49a078] mb-6">
-            <Shield className="w-3.5 h-3.5 text-[#49a078]" />
-            <span>Conformitate GDPR &bull; Regulamentul (UE) 2016/679</span>
-          </div>
-
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#f3f7f4] leading-[1.14]">
             Politică de Confidențialitate{" "}
             <span className="text-gradient-kairos block mt-1">
