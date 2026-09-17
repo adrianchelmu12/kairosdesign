@@ -288,8 +288,15 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 relative z-10">
         {/* Bottom Legal & Back to Top Bar */}
         <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-5 text-xs text-[#9cc5a1]/60 font-mono">
-          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-center sm:text-left">
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-5 text-center sm:text-left flex-wrap">
             <p>&copy; {new Date().getFullYear()} Kairos. Toate drepturile rezervate.</p>
+            <span className="hidden sm:inline text-[#216869]">&bull;</span>
+            <Link
+              href="/termeni-si-conditii"
+              className="hover:text-[#49a078] transition-colors underline decoration-[#49a078]/40 underline-offset-4"
+            >
+              Termeni și Condiții
+            </Link>
             <span className="hidden sm:inline text-[#216869]">&bull;</span>
             <Link
               href="/politica-de-confidentialitate"
@@ -312,13 +319,33 @@ export default function Footer() {
 
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-[#216869]/10 border border-[#49a078]/25 text-xs text-[#9cc5a1] hover:text-[#f3f7f4] hover:border-[#49a078] hover:bg-[#216869]/20 transition-all cursor-pointer group"
+            className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-[#216869]/10 border border-[#49a078]/25 text-xs text-[#9cc5a1] hover:text-[#f3f7f4] hover:border-[#49a078] hover:bg-[#216869]/20 transition-all cursor-pointer group flex-shrink-0"
           >
             <span>Înapoi sus</span>
             <ArrowUp className="w-3.5 h-3.5 text-[#49a078] group-hover:-translate-y-0.5 transition-transform" />
           </button>
         </div>
 
+        {/* ANPC Mandatory Badges / Links */}
+        <div className="mt-4 pt-3 border-t border-[#216869]/15 flex flex-wrap items-center justify-center sm:justify-start gap-3 text-[11px] text-[#9cc5a1]/50 font-mono">
+          <span>Conformitate ANPC:</span>
+          <a
+            href="https://anpc.ro/ce-este-sal/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-2.5 py-1 rounded-md bg-[#262c28] border border-[#216869]/30 hover:border-[#49a078]/50 hover:text-[#49a078] transition-colors"
+          >
+            ANPC &bull; SAL
+          </a>
+          <a
+            href="https://ec.europa.eu/consumers/odr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-2.5 py-1 rounded-md bg-[#262c28] border border-[#216869]/30 hover:border-[#49a078]/50 hover:text-[#49a078] transition-colors"
+          >
+            Platforma SOL (UE)
+          </a>
+        </div>
       </div>
     </footer>
   );
