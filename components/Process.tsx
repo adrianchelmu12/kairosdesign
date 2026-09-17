@@ -40,7 +40,7 @@ export default function Process() {
   ];
 
   return (
-    <section id="proces" className="relative py-24 sm:py-32 bg-[#1f2421] overflow-hidden">
+    <section id="proces" className="relative pt-10 sm:pt-14 lg:pt-16 pb-10 sm:pb-14 lg:pb-16 bg-[#1f2421] overflow-hidden">
       {/* Background radial highlights - zero-cost radial gradients */}
       <div
         className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none"
@@ -58,7 +58,7 @@ export default function Process() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-3xl mb-10 sm:mb-12 lg:mb-14">
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#f3f7f4]">
             Un parcurs clar,{" "}
             <span className="text-gradient-kairos">de la idee la rezultat.</span>

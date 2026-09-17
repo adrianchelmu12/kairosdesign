@@ -83,7 +83,7 @@ export default function TechStack() {
   return (
     <section
       id="tehnologii"
-      className="relative py-20 sm:py-28 lg:py-32 bg-[#1f2421] text-[#f3f7f4] border-t border-[#49a078]/20 overflow-hidden"
+      className="relative pt-16 sm:pt-24 lg:pt-28 pb-10 sm:pb-14 lg:pb-16 bg-[#1f2421] text-[#f3f7f4] border-t border-[#49a078]/20 overflow-hidden"
     >
       {/* Anchor for backward compatibility */}
       <span id="portofoliu" className="absolute -top-24 pointer-events-none" />

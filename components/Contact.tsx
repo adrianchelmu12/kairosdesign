@@ -52,7 +52,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-28 sm:py-36 bg-[#1f2421] text-[#f3f7f4] overflow-hidden">
+    <section id="contact" className="relative pt-12 sm:pt-16 lg:pt-20 pb-20 sm:pb-28 lg:pb-32 bg-[#1f2421] text-[#f3f7f4] overflow-hidden">
       {/* Background ambient lighting - zero-cost radial gradients */}
       <div
         className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[550px] h-[550px] rounded-full pointer-events-none"
